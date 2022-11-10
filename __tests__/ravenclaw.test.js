@@ -41,4 +41,16 @@ describe('Ravenclaws routes and tests', () => {
       ]
     `);
   });
+
+  it('GET /ravenclaws/:id will return one Ravenclaw by their id', async () => {
+    const resp = await request(app).get('/ravenclaws/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "name": "Luna Lovegood",
+        "wandModel": "20101",
+      }
+    `);
+  });
 });
