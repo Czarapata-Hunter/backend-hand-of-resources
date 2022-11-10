@@ -69,4 +69,11 @@ describe('Hufflepuffs routes', () => {
       }
     `);
   });
+
+  it('DELETE /hufflepuffs/:id will remove a Hufflepuff', async () => {
+    const resp = await request(app).delete('/hufflepuffs/1');
+    expect(resp.status).toBe(200);
+    const hufflepuffRemoval = await request(app).get('/hufflepuffs/1');
+    expect(hufflepuffRemoval.status).toBe(404);
+  });
 });
