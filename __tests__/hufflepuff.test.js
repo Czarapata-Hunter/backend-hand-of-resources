@@ -41,4 +41,16 @@ describe('Hufflepuffs routes', () => {
       ]
     `);
   });
+
+  it('GET hufflepuffs/:id should display one Hufflepuff row', async () => {
+    const resp = await request(app).get('/hufflepuffs/5');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Bridget",
+        "id": "5",
+        "lastName": "Wenlock",
+      }
+    `);
+  });
 });
