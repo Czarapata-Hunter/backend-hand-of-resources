@@ -53,4 +53,20 @@ describe('Hufflepuffs routes', () => {
       }
     `);
   });
+
+  it('POST /hufflepuffs should create new hufflepuff', async () => {
+    const newHufflepuff = {
+      first_name: 'Matt',
+      last_name: 'Smith',
+    };
+    const resp = await request(app).post('/hufflepuffs').send(newHufflepuff);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Matt",
+        "id": "6",
+        "lastName": "Smith",
+      }
+    `);
+  });
 });
