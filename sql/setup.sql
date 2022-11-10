@@ -21,8 +21,8 @@ CREATE TABLE hufflepuff (
 
 CREATE TABLE ravenclaw (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_name VARCHAR,
-    last_name VARCHAR
+    name VARCHAR,
+    wand_model BIGINT
 );
 
 CREATE TABLE slytherin (
@@ -62,15 +62,15 @@ VALUES
     ;
 
 INSERT INTO ravenclaw (
-    first_name,
-    last_name
+    name,
+    wand_model
 )
 VALUES
-    ('Luna', 'Lovegood'),
-    ('Rowena', 'Ravenclaw'),
-    ('Garrick', 'Ollivander'),
-    ('Filius', 'Flitwick'),
-    ('Gilderoy', 'Lockhart')
+    ('Luna Lovegood', 20101),
+    ('Rowena Ravenclaw', 40568),
+    ('Garrick Olivander', 19385),
+    ('Filius Flitwick', 69303),
+    ('Gilderoy Lockhart', 49605)
     ;
 
 INSERT INTO slytherin (
