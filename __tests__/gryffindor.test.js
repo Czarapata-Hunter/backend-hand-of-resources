@@ -54,6 +54,20 @@ describe('tests to interact with Gryffindor routes', () => {
     `);
   });
 
+  it('PUT /gryffindors/:id will update a preexisting gryffindor', async () => {
+    const resp = await request(app).put('/gryffindors/1').send({
+      firstName: 'James',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "James",
+        "id": "1",
+        "lastName": "Potter",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
