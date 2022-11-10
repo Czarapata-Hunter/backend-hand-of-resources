@@ -76,4 +76,22 @@ describe('Hufflepuffs routes', () => {
     const hufflepuffRemoval = await request(app).get('/hufflepuffs/1');
     expect(hufflepuffRemoval.status).toBe(404);
   });
+
+  it('PUT /hufflepuffs/:id should update an existing Hufflepuff', async () => {
+    const resp = await request(app).put('/hufflepuffs/1').send({
+      lastName: 'Czarapata',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Cedric",
+        "id": "1",
+        "lastName": "Czarapata",
+      }
+    `);
+  });
+
+  afterAll(() => {
+    pool.end();
+  });
 });
