@@ -42,6 +42,18 @@ describe('tests to interact with Gryffindor routes', () => {
     `);
   });
 
+  it('GET gryffindors/:id should return one Gryffindor', async () => {
+    const resp = await request(app).get('/gryffindors/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Harry",
+        "id": "1",
+        "lastName": "Potter",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
