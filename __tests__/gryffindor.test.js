@@ -68,6 +68,22 @@ describe('tests to interact with Gryffindor routes', () => {
     `);
   });
 
+  it('POST /gryffindors should create a new gryffindor', async () => {
+    const newGryffindor = {
+      first_name: 'Lily',
+      last_name: 'Potter',
+    };
+    const resp = await request(app).post('/gryffindors').send(newGryffindor);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Lily",
+        "id": "6",
+        "lastName": "Potter",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
