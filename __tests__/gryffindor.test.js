@@ -68,6 +68,13 @@ describe('tests to interact with Gryffindor routes', () => {
     `);
   });
 
+  it('DELETE /gryffindors/:id will delete a Gryffindor', async () => {
+    const resp = await request(app).delete('/gryffindors/1');
+    expect(resp.status).toBe(200);
+    const gryffindorResp = await request(app).get('/gryffindors/1');
+    expect(gryffindorResp.status).toBe(404);
+  });
+
   it('POST /gryffindors should create a new gryffindor', async () => {
     const newGryffindor = {
       first_name: 'Lily',
