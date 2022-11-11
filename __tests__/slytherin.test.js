@@ -67,4 +67,11 @@ describe('tests to interact with Slytherin routes', () => {
       }
     `);
   });
+
+  it('DELETE /slytherins/:id will delete a slytherin row', async () => {
+    const resp = await request(app).delete('/slytherins/1');
+    expect(resp.status).toBe(200);
+    const slytherinResp = await request(app).get('/slytherins/1');
+    expect(slytherinResp.status).toBe(404);
+  });
 });
