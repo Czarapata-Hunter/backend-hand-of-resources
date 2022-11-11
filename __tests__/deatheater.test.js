@@ -41,4 +41,16 @@ describe('test to interact with Deatheaters routes', () => {
       ]
     `);
   });
+
+  it('GET /deatheaters/:id should return one Deatheater', async () => {
+    const resp = await request(app).get('/deatheaters/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "doucheryLevel": "100",
+        "id": "1",
+        "name": "Lord Voldemort",
+      }
+    `);
+  });
 });
