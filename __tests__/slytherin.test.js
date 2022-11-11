@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe.skip('tests to interact with Slytherin routes', () => {
+describe('tests to interact with Slytherin routes', () => {
   beforeEach(() => {
     return setup(pool);
   });

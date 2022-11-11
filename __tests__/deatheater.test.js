@@ -74,4 +74,24 @@ describe('test to interact with Deatheaters routes', () => {
     const deatheaterResp = await request(app).get('/deatheaters/1');
     expect(deatheaterResp.status).toBe(404);
   });
+
+  it('POST /deatheaters should create a new Deatheater', async () => {
+    const newDeatheater = {
+      name: 'Geo',
+      douchery_level: 0,
+    };
+    const resp = await request(app).post('/deatheaters').send(newDeatheater);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "doucheryLevel": "0",
+        "id": "6",
+        "name": "Geo",
+      }
+    `);
+  });
+
+  afterAll(() => {
+    pool.end();
+  });
 });
