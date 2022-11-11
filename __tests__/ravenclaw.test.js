@@ -61,6 +61,22 @@ describe('Ravenclaws routes and tests', () => {
     expect(ravenclawDelete.status).toBe(404);
   });
 
+  it('POST /ravenclaws will create a new Ravenclaw', async () => {
+    const addedRavenclaw = {
+      name: 'Ravenclawy',
+      wand_model: '123456',
+    };
+    const resp = await request(app).post('/ravenclaws').send(addedRavenclaw);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "6",
+        "name": "Ravenclawy",
+        "wandModel": "123456",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
