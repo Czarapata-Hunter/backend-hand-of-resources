@@ -77,6 +77,20 @@ describe('Ravenclaws routes and tests', () => {
     `);
   });
 
+  it('PUT /ravenclaws/:id will update an existing Ravenclaw', async () => {
+    const resp = await request(app).put('/ravenclaws/1').send({
+      wandModel: '54321',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "id": "1",
+        "name": "Luna Lovegood",
+        "wandModel": "54321",
+      }
+    `);
+  });
+
   afterAll(() => {
     pool.end();
   });
