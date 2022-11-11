@@ -53,4 +53,18 @@ describe('tests to interact with Slytherin routes', () => {
       }
     `);
   });
+
+  it('PUT /slytherins/:id will update an existing slytherin', async () => {
+    const resp = await request(app).put('/slytherins/1').send({
+      lastName: 'DragonBoy',
+    });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Draco",
+        "id": "1",
+        "lastName": "DragonBoy",
+      }
+    `);
+  });
 });
