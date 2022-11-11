@@ -3,7 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('Ravenclaws routes and tests', () => {
+describe.skip('Ravenclaws routes and tests', () => {
   beforeEach(() => {
     return setup(pool);
   });
