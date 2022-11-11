@@ -53,4 +53,15 @@ describe('Ravenclaws routes and tests', () => {
       }
     `);
   });
+
+  it('DELETE /ravenclaws/:id will delete one of the ravenclaws', async () => {
+    const resp = await request(app).delete('/ravenclaws/1');
+    expect(resp.status).toBe(200);
+    const ravenclawDelete = await request(app).get('/ravenclaws/1');
+    expect(ravenclawDelete.status).toBe(404);
+  });
+
+  afterAll(() => {
+    pool.end();
+  });
 });
