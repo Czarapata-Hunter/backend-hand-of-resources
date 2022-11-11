@@ -74,4 +74,24 @@ describe('tests to interact with Slytherin routes', () => {
     const slytherinResp = await request(app).get('/slytherins/1');
     expect(slytherinResp.status).toBe(404);
   });
+
+  it('POST /slytherins will create a new slytherin row', async () => {
+    const newSlytherin = {
+      first_name: 'Snakey',
+      last_name: 'Snakeypoo',
+    };
+    const resp = await request(app).post('/slytherins').send(newSlytherin);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Snakey",
+        "id": "6",
+        "lastName": "Snakeypoo",
+      }
+    `);
+  });
+
+  afterAll(() => {
+    pool.end();
+  });
 });
