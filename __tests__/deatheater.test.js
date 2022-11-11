@@ -67,4 +67,11 @@ describe('test to interact with Deatheaters routes', () => {
       }
     `);
   });
+
+  it('DELETE /deatheaters/:id will delete a Deatheater', async () => {
+    const resp = await request(app).delete('/deatheaters/1');
+    expect(resp.status).toBe(200);
+    const deatheaterResp = await request(app).get('/deatheaters/1');
+    expect(deatheaterResp.status).toBe(404);
+  });
 });
