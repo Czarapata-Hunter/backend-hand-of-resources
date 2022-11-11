@@ -41,4 +41,16 @@ describe('tests to interact with Slytherin routes', () => {
       ]
     `);
   });
+
+  it('GET slytherins/:id should return a single Slytherin', async () => {
+    const resp = await request(app).get('/slytherins/1');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "firstName": "Draco",
+        "id": "1",
+        "lastName": "Malfoy",
+      }
+    `);
+  });
 });
